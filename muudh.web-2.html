@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Muudh Cookies</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#fffaf5;
+      color:#3d2a1f;
+      overflow-x:hidden;
+    }
+
+    :root{
+      --brown:#4b2e23;
+      --cream:#fff5ea;
+      --caramel:#c58a57;
+      --light:#f7e6d2;
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,0.85);
+      backdrop-filter:blur(10px);
+      padding:18px 7%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      box-shadow:0 2px 15px rgba(0,0,0,0.05);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:var(--brown);
+    }
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:var(--brown);
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:var(--caramel);
+    }
+
+    .hero{
+      min-height:100vh;
+      padding:100px 7%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:40px;
+      background:linear-gradient(to right,#fff5ea,#f8e4d0);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .hero-text{
+      flex:1;
+      animation:fadeUp 1s ease;
+    }
+
+    .hero-text h1{
+      font-size:58px;
+      line-height:1.1;
+      margin-bottom:20px;
+      color:var(--brown);
+    }
+
+    .hero-text p{
+      font-size:18px;
+      margin-bottom:30px;
+      color:#5e4637;
+    }
+
+    .buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border:none;
+      border-radius:50px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .primary{
+      background:var(--brown);
+      color:white;
+    }
+
+    .primary:hover{
+      transform:translateY(-3px);
+      background:#2e1b13;
+    }
+
+    .secondary{
+      background:white;
+      color:var(--brown);
+      box-shadow:var(--shadow);
+    }
+
+    .secondary:hover{
+      transform:translateY(-3px);
+    }
+
+    .hero-image{
+      flex:1;
+      text-align:center;
+      animation:float 4s ease-in-out infinite;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:520px;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+
+    section{
+      padding:90px 7%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .section-title h2{
+      font-size:40px;
+      color:var(--brown);
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#6f5b4e;
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:25px;
+      box-shadow:var(--shadow);
+    }
+
+    .about-content{
+      background:white;
+      padding:35px;
+      border-radius:25px;
+      box-shadow:var(--shadow);
+    }
+
+    .menu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .cookie-card{
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transition:0.4s;
+      position:relative;
+    }
+
+    .cookie-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .cookie-card img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:25px;
+    }
+
+    .card-content h3{
+      margin-bottom:10px;
+      color:var(--brown);
+    }
+
+    .price{
+      color:var(--caramel);
+      font-size:20px;
+      font-weight:700;
+      margin:15px 0;
+    }
+
+    .add-cart{
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:14px;
+      background:var(--brown);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .add-cart:hover{
+      background:#2b1a14;
+    }
+
+    .delivery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:20px;
+    }
+
+    .delivery-card{
+      background:white;
+      padding:25px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:var(--shadow);
+      transition:0.3s;
+    }
+
+    .delivery-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .step{
+      background:white;
+      padding:35px;
+      border-radius:25px;
+      text-align:center;
+      box-shadow:var(--shadow);
+    }
+
+    .step span{
+      font-size:50px;
+    }
+
+    .testimonials{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:25px;
+    }
+
+    .review{
+      background:white;
+      padding:30px;
+      border-radius:25px;
+      box-shadow:var(--shadow);
+    }
+
+    .stars{
+      color:gold;
+      margin-bottom:10px;
+    }
+
+    .supplier{
+      background:linear-gradient(to right,#4b2e23,#7a4d36);
+      color:white;
+      border-radius:30px;
+      padding:60px;
+      text-align:center;
+    }
+
+    .supplier h2{
+      font-size:42px;
+      margin-bottom:20px;
+    }
+
+    .contact-form{
+      max-width:700px;
+      margin:auto;
+      background:white;
+      padding:40px;
+      border-radius:30px;
+      box-shadow:var(--shadow);
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    input, select{
+      width:100%;
+      padding:15px;
+      border:none;
+      background:#f8f3ee;
+      border-radius:15px;
+      font-size:16px;
+    }
+
+    footer{
+      background:#2e1b13;
+      color:white;
+      padding:50px 7%;
+      margin-top:80px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+    }
+
+    footer a{
+      color:#f5d7b8;
+      text-decoration:none;
+      display:block;
+      margin-top:10px;
+    }
+
+    .cookie-float{
+      position:absolute;
+      font-size:50px;
+      opacity:0.15;
+      animation:float 6s infinite ease-in-out;
+    }
+
+    .cookie1{
+      top:10%;
+      left:5%;
+    }
+
+    .cookie2{
+      bottom:10%;
+      right:10%;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0px);}
+      50%{transform:translateY(-20px);}
+      100%{transform:translateY(0px);}
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:900px){
+
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .hero-text h1{
+        font-size:42px;
+      }
+
+      .nav-links{
+        display:none;
+      }
+
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Muudh Cookies 🍪</div>
+
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#order">Order</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+
+    <div class="cookie-float cookie1">🍪</div>
+    <div class="cookie-float cookie2">🍪</div>
+
+    <div class="hero-text">
+      <h1>Fresh Premium Cookies Delivered Across Muqdisho 🍪</h1>
+
+      <p>
+        Soft, delicious, freshly baked cookies made with love and delivered fast.
+      </p>
+
+      <div class="buttons">
+        <a href="#order" class="btn primary">Order Now</a>
+        <a href="#menu" class="btn secondary">View Menu</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1200&auto=format&fit=crop" alt="Cookies">
+    </div>
+
+  </section>
+
+  <section id="about">
+
+    <div class="section-title">
+      <h2>About Muudh Cookies</h2>
+      <p>Freshly baked happiness delivered to your door 🍪</p>
+    </div>
+
+    <div class="about">
+
+      <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="about-content">
+        <h3>Premium Online Cookie Business</h3>
+
+        <p style="margin-top:15px; line-height:1.8;">
+          Muudh Cookies is an online-only premium cookie business based in Muqdisho, Somalia.
+          We bake fresh cookies daily using quality ingredients and deliver across Muqdisho and Ceelasha Biyaha.
+        </p>
+
+        <p style="margin-top:15px; line-height:1.8;">
+          We also supply cookies to cafes, restaurants, and businesses looking for reliable bakery partnerships.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="menu">
+
+    <div class="section-title">
+      <h2>Our Cookie Menu</h2>
+      <p>Warm, soft, premium cookies made fresh every day</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Pistachio Cookie</h3>
+          <p>Rich buttery cookie loaded with pistachio flavor.</p>
+          <div class="price">$0.85</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Almond Chocolate Chip</h3>
+          <p>Crunchy almonds mixed with melted chocolate chips.</p>
+          <div class="price">$0.85</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Chocolate Chip Cookie</h3>
+          <p>Classic soft cookie with gooey chocolate chips.</p>
+          <div class="price">$0.80</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Espresso Cookie</h3>
+          <p>Deep coffee flavor with a smooth sweet finish.</p>
+          <div class="price">$0.80</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Red Velvet Cookie</h3>
+          <p>Velvety soft cookie with rich cocoa flavor.</p>
+          <div class="price">$0.80</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Kinder Cookie</h3>
+          <p>Creamy kinder filling with chocolate goodness.</p>
+          <div class="price">$1.00</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Dairy Milk Cookie</h3>
+          <p>Soft cookie packed with dairy milk chocolate.</p>
+          <div class="price">$1.00</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Hazelnut Cookie</h3>
+          <p>Nutty hazelnut flavor with creamy texture.</p>
+          <div class="price">$1.00</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+      <div class="cookie-card">
+        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=1200&auto=format&fit=crop">
+        <div class="card-content">
+          <h3>Biscoff Cookie</h3>
+          <p>Caramelized biscoff flavor loved by everyone.</p>
+          <div class="price">$1.10</div>
+          <button class="add-cart">Add To Cart</button>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="delivery">
+
+    <div class="section-title">
+      <h2>Delivery Coverage 🚚</h2>
+      <p>Fast cookie delivery across Muqdisho & Ceelasha Biyaha</p>
+    </div>
+
+    <div class="delivery-grid">
+
+      <div class="delivery-card">Kaxda</div>
+      <div class="delivery-card">Kaaraan</div>
+      <div class="delivery-card">Heliwaa</div>
+      <div class="delivery-card">Boondheere</div>
+      <div class="delivery-card">Dharkenley</div>
+      <div class="delivery-card">Cabdicasiis</div>
+      <div class="delivery-card">Yaaqshiid</div>
+      <div class="delivery-card">Warta Nabada</div>
+      <div class="delivery-card">Hodan</div>
+      <div class="delivery-card">Howlwadaag</div>
+      <div class="delivery-card">Shibis</div>
+      <div class="delivery-card">Xamar Jajab</div>
+      <div class="delivery-card">Xamar Weyne</div>
+      <div class="delivery-card">Waaberi</div>
+      <div class="delivery-card">Dayniile</div>
+      <div class="delivery-card">Wadajir</div>
+      <div class="delivery-card">Gubadley</div>
+      <div class="delivery-card">Daarusalaam</div>
+      <div class="delivery-card">Garasbaaley</div>
+      <div class="delivery-card">Ceelasha Biyaha</div>
+
+    </div>
+
+    <div style="margin-top:50px; text-align:center;">
+      <h3 style="margin-bottom:20px;">Popular Muqdisho Locations</h3>
+      <p style="line-height:2;">
+        📍 Lido Beach • Bakara Market • KM4 • Aden Adde Airport • Jazeera Beach • Villa Somalia
+      </p>
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="section-title">
+      <h2>How To Order</h2>
+      <p>Simple, fast, and delicious 🍪</p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+        <span>🍪</span>
+        <h3>Choose Cookies</h3>
+        <p>Select your favorite premium cookies.</p>
+      </div>
+
+      <div class="step">
+        <span>🛒</span>
+        <h3>Select Quantity</h3>
+        <p>Add as many cookies as you want.</p>
+      </div>
+
+      <div class="step">
+        <span>📍</span>
+        <h3>Enter Location</h3>
+        <p>Choose your Muqdisho delivery location.</p>
+      </div>
+
+      <div class="step">
+        <span>✅</span>
+        <h3>Confirm Order</h3>
+        <p>We bake and deliver your cookies fast.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="section-title">
+      <h2>Customer Reviews</h2>
+      <p>What Muqdisho customers say about us</p>
+    </div>
+
+    <div class="testimonials">
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Cookies-ka ugu fiican Muqdisho 🍪”</p>
+        <h4 style="margin-top:15px;">— Ayaan</h4>
+      </div>
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Delivery-ga waa degdeg!”</p>
+        <h4 style="margin-top:15px;">— Maxamed</h4>
+      </div>
+
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>“Biscoff-ka aad ayuu u macaan yahay!”</p>
+        <h4 style="margin-top:15px;">— Hodan</h4>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section>
+
+    <div class="supplier">
+
+      <h2>Supplier & Cafe Partnerships</h2>
+
+      <p style="max-width:800px; margin:auto; line-height:1.9;">
+        Muudh Cookies supplies premium fresh cookies to cafes, restaurants, and businesses across Muqdisho.
+        We provide reliable delivery, consistent quality, and partnership opportunities for growing businesses.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section id="order">
+
+    <div class="section-title">
+      <h2>Place Your Order</h2>
+      <p>Freshly baked happiness delivered to your door 🍪</p>
+    </div>
+
+    <div class="contact-form">
+
+      <div class="form-group">
+        <input type="text" placeholder="Your Name">
+      </div>
+
+      <div class="form-group">
+        <input type="text" placeholder="Phone Number">
+      </div>
+
+      <div class="form-group">
+        <select>
+          <option>Select Cookie</option>
+          <option>Pistachio Cookie</option>
+          <option>Chocolate Chip Cookie</option>
+          <option>Biscoff Cookie</option>
+          <option>Hazelnut Cookie</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <input type="number" placeholder="Quantity">
+      </div>
+
+      <div class="form-group">
+        <input type="text" placeholder="Delivery Location">
+      </div>
+
+      <button class="btn primary" style="width:100%;">
+        Confirm Order
+      </button>
+
+      <p style="margin-top:20px; text-align:center;">
+        Waxaan si dhaqsi leh kuugu keeni doonaa macmiil 🍪
+      </p>
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    <div class="footer-grid">
+
+      <div>
+        <h2>Muudh Cookies 🍪</h2>
+        <p style="margin-top:15px;">
+          Fresh premium cookies delivered across Muqdisho and Ceelasha Biyaha.
+        </p>
+      </div>
+
+      <div>
+        <h3>Quick Links</h3>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#order">Order</a>
+      </div>
+
+      <div>
+        <h3>Delivery Areas</h3>
+        <p style="margin-top:10px;">
+          Muqdisho • Ceelasha Biyaha • KM4 • Lido
+        </p>
+      </div>
+
+    </div>
+
+    <div style="margin-top:40px; text-align:center;">
+      © 2026 Muudh Cookies. All Rights Reserved.
+    </div>
+
+  </footer>
+
+</body>
+</html>
